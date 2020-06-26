@@ -7,7 +7,7 @@ export default function App() {
     <div className="container p-3">
         <div className="row">
             <div className="col-md-12 d-flex">
-                <img style={{height: "50px"}} className="mr-3" src="/public/HYPR_Logo_HighRes_Black.png" />
+                <img style={{height: "50px"}} className="mr-3" src="/nodesample/public/HYPR_Logo_HighRes_Black.png" />
                 <h2>HYPR Demo</h2>
             </div>
         </div>
