@@ -6,6 +6,7 @@ You will need the following:
 
 - a HYPR access token, which you can get here.
 - the URL for your HYPR account.
+- Your computer must have a built-in FIDO2 authenticator (like Touch ID or Windows Hello).
 
 ## Setup
 
