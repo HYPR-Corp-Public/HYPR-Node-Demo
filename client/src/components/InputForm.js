@@ -29,7 +29,7 @@ async function createAttestationOptions(username, displayName) {
     const attestationOptions = HYPRFido2Client.createAttestationOptions(username, displayName);
 
     try {
-        const response = await fetch("/attestation/options", {
+        const response = await fetch("/nodesample/attestation/options", {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -52,7 +52,7 @@ async function createAssertionOptions(username) {
     const assertionOptions = HYPRFido2Client.createAssertionOptions(username);
 
     try {
-        const response = await fetch("/assertion/options", {
+        const response = await fetch("/nodesample/assertion/options", {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -75,7 +75,7 @@ async function createAssertionOptions(username) {
 
 async function verifyCredentialResult(credential) {
     try {
-        const response = await fetch("/attestation/result", {
+        const response = await fetch("/nodesample/attestation/result", {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -97,7 +97,7 @@ async function verifyCredentialResult(credential) {
 
 async function verifyAssertionResult(credential) {
     try {
-        const response = await fetch("/assertion/result", {
+        const response = await fetch("/nodesample/assertion/result", {
             headers: {
                 "Content-Type": "application/json"
             },

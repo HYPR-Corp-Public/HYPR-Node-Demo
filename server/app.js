@@ -4,6 +4,8 @@ const fetch = require("node-fetch");
 const { Console } = require('console');
 
 const app = express()
+const router = express.Router();
+const contextPath = '/nodesample';
 const port = 3000
 
 const config = JSON.parse(fs.readFileSync("./hyprconfig.json"));
@@ -13,16 +15,19 @@ if (!config.accessToken || !config.url) {
 }
 
 
+
 app.use(express.json());
 
 app.use('/dist', express.static('./dist'))
 app.use('/public', express.static('./public'))
+router.use('/dist', express.static('./dist'))
+router.use('/public', express.static('./public'))
 
 
 app.get('/', (req, res) => res.sendFile(`${__dirname}/index.html`));
-app.get('/nodesample', (req, res) => res.sendFile(`${__dirname}/index.html`));
+router.get('/', (req, res) => res.sendFile(`${__dirname}/index.html`));
 
-app.post('/attestation/options', async (req, res) => {
+const attestationOptions = async (req, res) => {
     let response;
     try {
         response = await fetch(`${config.url}/rp/api/versioned/fido2/attestation/options`, {
@@ -44,9 +49,11 @@ app.post('/attestation/options', async (req, res) => {
     } catch (err) {
         res.status(400).send({errorText: err.toString()});
     }
-});
+}
+app.post('/attestation/options', attestationOptions);
+router.post('/attestation/options', attestationOptions);
 
-app.post('/attestation/result', async (req, res) => {
+const attestationResult = async (req, res) => {
     let response;
 
     try {
@@ -70,9 +77,12 @@ app.post('/attestation/result', async (req, res) => {
     } catch (err) {
         res.status(400).send({errorText: err.toString()});
     }
-});
+}
 
-app.post('/assertion/options', async (req, res) => {
+app.post('/attestation/result', attestationResult);
+router.post('/attestation/result', attestationResult);
+
+const assertionOptions = async (req, res) => {
     let response;
 
     try {
@@ -96,10 +106,12 @@ app.post('/assertion/options', async (req, res) => {
     } catch (err) {
         res.status(400).send({errorText: err.toString()});
     }
-});
+}
 
+app.post('/assertion/options', assertionOptions);
+router.post('/assertion/options', assertionOptions);
 
-app.post('/assertion/result', async (req, res) => {
+const assertionResult = async (req, res) => {
     let response;
 
     try {
@@ -123,6 +135,10 @@ app.post('/assertion/result', async (req, res) => {
     } catch (err) {
         res.status(400).send({errorText: err.toString()});
     }
-});
+}
 
+app.post('/assertion/result', assertionResult);
+router.post('/assertion/result', assertionResult);
+
+app.use(contextPath, router);
 app.listen(port, () => console.log(`HYPR demo app listening at http://localhost:${port}`))
