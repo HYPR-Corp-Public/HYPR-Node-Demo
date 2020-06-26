@@ -143,9 +143,10 @@ export default function InputForm() {
         setSuccess("")
         event.preventDefault();
         try {
-            isFido2Available();
+            await isFido2Available();
         } catch (err) {
             setError(`FIDO2 unavailable on this browser/device. ${err.toString()}`);
+            return;
         }
         
         let attestationOptions;
@@ -178,9 +179,10 @@ export default function InputForm() {
         event.preventDefault();
         
         try {
-            isFido2Available();
+            await isFido2Available();
         } catch (err) {
             setError(`FIDO2 unavailable on this browser/device. ${err.toString()}`);
+            return;
         }
 
         let assertionOptions;
