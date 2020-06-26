@@ -36,5 +36,5 @@ Inside of the `server` directory:
 node app.js
 ```
 
-The application can be accessed at `http://localhost:3000`. 
+The application can be accessed at `http://localhost:3000/nodesample`. 
 
