@@ -2,8 +2,6 @@
 
 This demo application shows how to set up passwordless authentication in a web application, using [HYPR's APIs](https://apidocs.hypr.com/). Written in Node/Express and React.
 
-![Demo GIF]("https://raw.githubusercontent.com/HYPR-Corp-Public/HYPR-Node-Demo/master/demo.gif")
-
 You will need the following:
 
 - a HYPR access token, which you can get here.
