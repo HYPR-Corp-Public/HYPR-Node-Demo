@@ -20,6 +20,7 @@ app.use('/public', express.static('./public'))
 
 
 app.get('/', (req, res) => res.sendFile(`${__dirname}/index.html`));
+app.get('/nodesample', (req, res) => res.sendFile(`${__dirname}/index.html`));
 
 app.post('/attestation/options', async (req, res) => {
     let response;
